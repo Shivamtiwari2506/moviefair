@@ -5,15 +5,14 @@ import all_requests from '../request'
 
 
 
-
 const Banner = () => {
    const [movie , setMovie]= useState([])
 
    useEffect(() => {
     
        async function fetchData() {
-        console.log(instance);
-           const request = await instance.get('https://api.themoviedb.org/3/authentication');
+        
+           const request = await instance.get("https://api.themoviedb.org/3" + all_requests.fetchNetflixOriginals);
            setMovie(
                request.data.results[
                    Math.floor(Math.random() * request.data.results.length - 1)
@@ -28,10 +27,12 @@ const Banner = () => {
        <header className="banner"
                 style={{
                     backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
                     backgroundImage: `url(
                         "https://image.tmdb.org/t/p/original/${movie?.backdrop_path}"
                     )`,
-                    backgroundPosition: "center center",
+                    backgroundPosition: "top center",
+                
                 }}
             >
                 <div className="banner__contents">
